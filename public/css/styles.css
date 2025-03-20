@@ -1,6 +1,339 @@
 /******* Change Box Model ***************/
+@import url('https://fonts.googleapis.com/css2?family=Candal&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+  --font-title: "Urbanist", sans-serif;
+  --font2: "Candal", sans-serif;
+  --backcolor1: #181414;
+  --backcolor2: #282424;
+  --backcolor3: #f8f4f4;
+  --yellow: #c0ac04;
+  --green: #089c5c;
+  
+}
+
 *,
 *:before,
 *:after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-title);
+
+}
+
+header {
+  width: 100%;
+  background-color: var(--backcolor1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding:30px 60px;
+}
+
+#siteName a img{
+  width: 160px;
+
+}
+
+#tools a{
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+}
+
+nav {
+  height: 100px;
+  align-content: center;
+  background-color: var(--backcolor2);
+  color: white;
+  
+}
+
+nav ul{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  text-decoration: none;
+  list-style: none;
+
+  font-size: 2.5rem;
+}
+
+
+main{
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+/* Hero Section Mobile*/
+.hero {
+  width: 100%;
+  height: 1020px;
+  background-color: var(--backcolor1);
+  font-family: var(--font2);
+  color: white;
+  padding: 70px;
+  padding-top: 100px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  justify-content: center;
+
+  overflow:visible;
+}
+
+.hero h1{
+  
+  grid-row: 1/2;
+  font-size: 4.5rem;
+  padding: 10px 0;
+  justify-self: center;
+  
+}
+
+ #hero-box{
+  grid-row: 2/3;
+  width: auto;
+  justify-self: center;
+  background-color: #282424;
+  border-radius: 10px;
+  font-size: 3rem;
+  padding: 30px 60px;
+  margin: 30px 0;
+}
+
+ #hero-box button{
+  font-size: 3rem;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px;
+  margin: 40px 5px 20px 5px ;
+  border-radius: 5px;
+  background-color: var(--green);
+  color: white;
+}
+
+ #hero-img{
+  grid-row: 3/4;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+
+  overflow:visible;
+  z-index: 100;
+}
+
+.hero img{ 
+  width: 1000px;
+}
+
+.yellow-high{
+  color: var(--yellow);
+}
+/* Hero Section */
+
+
+/* Info section */
+#info{
+  width: 100%;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  gap: 70px;
+  padding-top: 100px;
+}
+
+#reviews{
+  background-color: var(--backcolor3);
+  width: 90%;
+  height: auto;
+  
+  border-radius: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+
+  margin: 90px auto;
+  padding: 50px;
+
+  font-size: 3rem;
+}
+
+#reviews ul li{
+  list-style: none;
+  margin: 10px auto 50px;
+}
+
+
+/* Upgrades Section */
+#upgrades{
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 40px;
+}
+
+#upgrades h3{
+  font-size: 4rem;
+}
+
+.section-box{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  align-items: center;
+  gap: 70px;
+}
+
+.section-box-illus {
+  width: 300px;
+  height: 300px;
+  background-color: var(--backcolor3);
+  border-radius: 70px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+}
+
+.section-box-illus img{
+  width: 70%;
+  
+}
+
+.section-box-title h4{
+  font-size: 3rem;
+}
+
+.section-box-title{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.section-box-title p{
+  font-size: 2.5rem;
+  color: var(--green);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+
+/* Footer section */
+footer {
+  width: 100%;
+  min-height: 350px;
+  background-color: var(--backcolor1);
+  color: white;
+  border-top-left-radius: 70px;
+  border-top-right-radius: 70px;
+
+  display: flex;
+  justify-content: center;
+
+  font-size: 2.5rem;
+  padding: 70px;
+  margin-top: 70px;
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .hero {
+    height: 800px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+   #hero-h1{
+    grid-column: 1/3;
+  }
+
+   #hero-box {
+    grid-column: 1/2;
+    
+    z-index: 100;
+    font-size: 2rem;
+    justify-content: center;
+    height: fit-content;
+  }
+
+  #hero-box h3, p{
+    text-align: center;
+  }
+
+   #hero-box button {
+    font-size: 2rem;
+  }
+
+   #hero-img{
+    grid-row: 2/3;
+    grid-column: 1/3;
+    margin-top: 280px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    background-image: url(/images/site/checkerboard.jpg);
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+  }
+
+  p{
+    font-size: 1rem;
+  }
+  #wrapper{
+    width: 1200px;
+    background-color: white;
+  }
+  
+  header{
+    padding: auto 100px;
+  }
+  
+  
+  #info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #reviews {
+    width: 100%;
+    height: fit-content;
+    font-size: 2rem;
+  }
+
+  #upgrades {
+    font-size: 2rem;
+  }
+
+  #upgrades h3{
+    font-size: 2rem;
+  }
+
+  .section-box-illus{
+    width: 150px;
+    height: 150px;
+    border-radius: 50px;
+  }
+
+  .section-box-title h4, p{
+    font-size: 2rem !important; 
+  }
+
+  footer{
+    height: 150px;
+  }
 }
