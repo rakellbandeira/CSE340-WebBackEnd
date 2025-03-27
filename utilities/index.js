@@ -58,6 +58,29 @@ Util.buildClassificationGrid = async function(data){
   }
 
 
+      /* **************************************
+    * Build the vehicle detail view HTML
+    * ************************************ */
+    Util.buildVehicleDetail = async function(vehicle){
+      let html = '<div class="vehicle-detail">'
+      html += '<div class="vehicle-image">'
+      html += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">`
+      html += '</div>'
+      html += '<div class="vehicle-info">'
+      html += `<h2>${vehicle.inv_make} ${vehicle.inv_model}</h2>`
+      html += '<div class="vehicle-specs">'
+      html += `<p class="vehicle-price">Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>`
+      html += `<p class="vehicle-year">Year: ${vehicle.inv_year}</p>`
+      html += `<p class="vehicle-miles">Mileage: ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</p>`
+      html += `<p class="vehicle-color">Color: ${vehicle.inv_color}</p>`
+      html += '</div>'
+      html += `<p class="vehicle-description">${vehicle.inv_description}</p>`
+      html += '</div>'
+      html += '</div>'
+      return html
+    }
+
+
   /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
