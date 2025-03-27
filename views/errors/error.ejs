@@ -1,0 +1,19 @@
+<!-- Use the title as the main heading -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else { %>
+    <h1>Server Error</h1>
+<% } %>
+
+<!-- Display the error message -->
+<div class="error-container">
+    <p class="error-message"><%- message %></p>
+    
+    <!-- Add some humor to the error page -->
+    <div class="error-humor">
+        <h2>Oops! Looks like we've hit a speed bump...</h2>
+        <p>Even our DeLorean can't time-travel out of this one!</p>
+        <img src="/images/site/car-hero.png" alt="CSE Motors" class="error-image">
+        <p>Maybe try turning the key again? (Or just go back to <a href="/">Home</a>)</p>
+    </div>
+</div>
