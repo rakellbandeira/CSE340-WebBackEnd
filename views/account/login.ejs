@@ -6,20 +6,57 @@
   
   <div class="login-container">
     <form id="loginForm" action="/account/login" method="post">
-      <div class="form-group">
-        <label for="account_email">Email:</label>
-        <input type="email" id="account_email" name="account_email" required>
-      </div>
-      <div class="form-group">
-        <label for="account_password">Password:</label>
-        <input type="password" id="account_password" name="account_password" required>
-      </div>
-      <div class="form-group">
-        <button type="submit">Login</button>
-      </div>
+      
+        <div class="form-group">
+            <label for="account_email">Email:</label>
+            <input type="email" id="account_email" name="account_email" required>
+          </div>
+
+        <div class="form-group">
+            <label for="account_password">Password:</label>
+            <div class="password-input-container">
+              <input type="password" id="account_password" name="account_password" required 
+                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+              <button type="button" id="showPassword" class="show-password-btn">Show</button>
+            </div>
+            <div class="password-requirements">
+              <p>Password must be:</p>
+              <ul>
+                <li>at least 12 characters</li>
+                <li>include at least 1 capital letter</li>
+                <li>include at least 1 number</li>
+                <li>include at least 1 special character</li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
     </form>
     
     <div class="register-link">
       <p>No account? <a href="/account/register">Sign-up</a></p>
     </div>
   </div>
+
+
+
+
+  <!-- JavaScript for password visibility toggle -->
+  <script>
+    const passwordInput = document.getElementById('account_password');
+    const showPasswordButton = document.getElementById('showPassword');
+    
+    if (showPasswordButton) {
+      showPasswordButton.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          showPasswordButton.textContent = 'Hide';
+        } else {
+          passwordInput.type = 'password';
+          showPasswordButton.textContent = 'Show';
+        }
+      });
+    }
+  </script>

@@ -420,6 +420,49 @@ main{
 }
 
 
+/* Form validation styles */
+input:required:invalid,
+input:focus:invalid {
+  border: 2px solid #ff6b6b;
+}
+
+input:required:valid {
+  border: 2px solid #51cf66;
+}
+
+.password-requirements {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #ccc;
+  background-color: var(--backcolor1);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.password-requirements ul {
+  margin-top: 5px;
+  padding-left: 20px;
+}
+
+.password-requirements li {
+  margin-bottom: 3px;
+}
+
+.password-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.show-password-btn {
+  padding: 5px 10px;
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+
 
 /* Footer section */
 footer {

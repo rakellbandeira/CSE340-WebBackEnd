@@ -41,18 +41,25 @@
     </form>
   </div>
 
+
+
+  
+
   <!-- JavaScript for password visibility toggle -->
   <script>
+    
     const passwordInput = document.getElementById('account_password');
     const showPasswordButton = document.getElementById('showPassword');
     
-    showPasswordButton.addEventListener('click', function() {
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        showPasswordButton.textContent = 'Hide';
-      } else {
-        passwordInput.type = 'password';
-        showPasswordButton.textContent = 'Show';
-      }
-    });
+    if (showPasswordButton) {
+      showPasswordButton.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          showPasswordButton.textContent = 'Hide';
+        } else {
+          passwordInput.type = 'password';
+          showPasswordButton.textContent = 'Show';
+        }
+      });
+    }
   </script>
