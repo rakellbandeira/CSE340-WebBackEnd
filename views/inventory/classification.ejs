@@ -1,0 +1,34 @@
+<!-- The content heading: implementing a value for the <title> element that describes the content of the view -->
+<!-- An Explanation
+Line 9 - uses a EJS code block to contain a JavaScript if structure to determine if a "title" variable exists.
+Line 2 - if the variable exists, it is displayed within an <h1> element.
+Line 3 - ends the if structure and begins an else structure.
+Line 4 - redirects the response object to the default index route, to deliver the home view.
+Line 13 - ends the else structure. -->
+
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+
+<!-- A Message Block -->
+
+<%# messages() %>
+
+<!-- An Explanation
+An EJS code block, using a comment mark (#), disables this code. In the future, when messages have been implemented, you'll replace the comment with the unescaped mark (—), while will allow any messages that have been set to be displayed. -->
+
+
+
+<!-- The Inventory Items Display -->
+<!-- This code block is the main content delivery mechanism for the view. You'll notice that it is very simple. The reason is that the view is meant to display content, not necessarily to contain logic. All the logic and building were done previously, the view only displays the result. -->
+
+<%- grid %>
+
+<!-- Line 1 - An EJS code block with an "unescaped" indicator —. This allows HTML to be displayed. Remember our grid variable contains HTML. -->
+
+
+
+<!--  -->
