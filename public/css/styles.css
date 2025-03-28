@@ -59,8 +59,21 @@ nav ul{
   flex-direction: row;
   text-decoration: none;
   list-style: none;
-
+  color: white;
+  cursor: pointer;
   font-size: 2.5rem;
+}
+
+
+nav ul a {
+  text-decoration: none;
+  list-style: none;
+  color: white;
+  cursor: pointer;
+}
+
+nav ul a:hover{
+  color: var(--yellow);
 }
 
 
@@ -479,6 +492,114 @@ ul.notice li {
 }
 
 
+/* Management view styles */
+.management-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--backcolor2);
+  border-radius: 10px;
+  color: white;
+}
+
+.management-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.management-link {
+  display: inline-block;
+  background-color: var(--yellow);
+  color: var(--backcolor1);
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+}
+
+.management-link:hover {
+  background-color: #e6b800;
+}
+
+
+/* Form container styles */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--backcolor2);
+  border-radius: 10px;
+  color: white;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-group button {
+  background-color: var(--green);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-group button:hover {
+  background-color: #067d4a;
+}
+
+.form-instructions {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  color: #ccc;
+}
+
+
+/* Inventory form specific styles */
+.inv-form {
+  max-width: 800px;
+}
+
+.inv-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: var(--font-title);
+}
+
+/* Classification select list */
+.inv-form select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: white;
+}
+
 
 
 /* Footer section */
@@ -553,6 +674,29 @@ footer {
     flex: 1;
     padding-left: 20px;
   }
+
+  .management-links {
+    flex-direction: row;
+  }
+  
+  .management-link {
+    flex: 1;
+  }
+
+  .inv-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .inv-form .form-group:last-child {
+    grid-column: 1 / 3;
+  }
+  
+  .inv-form .form-group:nth-child(5) {
+    grid-column: 1 / 3;
+  }
+
 
 
 }

@@ -1,7 +1,7 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
 
-/* ************************
+/*************************
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
@@ -24,9 +24,9 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-/* **************************************
+/***************************************
 * Build the classification view HTML
-* ************************************ */
+************************************* */
 Util.buildClassificationGrid = async function(data){
     let grid
     if(data.length > 0){
@@ -58,10 +58,10 @@ Util.buildClassificationGrid = async function(data){
   }
 
 
-      /* **************************************
+    /***************************************
     * Build the vehicle detail view HTML
-    * ************************************ */
-    Util.buildVehicleDetail = async function(vehicle){
+    ************************************* */
+  Util.buildVehicleDetail = async function(vehicle){
       let html = '<div class="vehicle-detail">'
       html += '<div class="vehicle-image">'
       html += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">`
@@ -78,7 +78,31 @@ Util.buildClassificationGrid = async function(data){
       html += '</div>'
       html += '</div>'
       return html
-    }
+  }
+
+
+    /***************************************
+    * Build the classification select list
+    ************************************* */
+  Util.buildClassificationList = async function (classification_id = null) {
+      let data = await invModel.getClassifications()
+      let classificationList = 
+        '<select name="classification_id" id="classificationList" required>'
+      classificationList += "<option value=''>Choose a Classification</option>"
+      data.rows.forEach((row) => {
+        classificationList += '<option value="' + row.classification_id + '"'
+        if (
+          classification_id != null &&
+          row.classification_id == classification_id
+        ) {
+          classificationList += " selected "
+        }
+        classificationList += ">" + row.classification_name + "</option>"
+      })
+      classificationList += "</select>"
+      return classificationList
+  }
+
 
 
   /* ****************************************
