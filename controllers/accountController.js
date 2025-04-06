@@ -3,6 +3,12 @@ const accountModel = require("../models/account-model")
 const bcrypt = require("bcryptjs")
 const accountController = {}
 
+//Week05
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+
+
+
 /* ****************************************
 *  Deliver login view
 * *************************************** */
@@ -78,4 +84,88 @@ accountController.registerAccount = async function (req, res) {
 
 
 
-module.exports = accountController
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+accountController.accountLogin = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { account_email, account_password } = req.body
+
+  const accountData = await accountModel.getAccountByEmail(account_email)
+  
+  if (!accountData) {
+    req.flash("notice", "Please check your credentials and try again.")
+    res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email,
+    })
+    return
+  }
+  try {
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
+      delete accountData.account_password
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      if(process.env.NODE_ENV === 'development') {
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      } else {
+        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+      }
+      return res.redirect("/account/")
+    }
+    else {
+      req.flash("message notice", "Please check your credentials and try again.")
+      res.status(400).render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+        account_email,
+      })
+    }
+  } catch (error) {
+    throw new Error('Access Forbidden')
+  }
+}
+ 
+
+
+accountController.buildAccountManagement = async function  (req, res, next) {
+  let nav = await utilities.getNav();
+
+  //This is getting JWT from the cookie
+  const token = req.cookies.jwt
+
+  if(!token) {
+    req.flash("notice", "Please log in to access account management.")
+    return res.redirect("/account/login")
+  }
+
+  try {
+
+    //This is verifying and getting user data
+  const accountData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+
+
+    // THis is the response, delivering the account view
+    // and includes the JWT token verified
+  res.render("account/account", {
+      title: "Account Management",
+      nav,
+      errors: null,
+      accountData
+    })
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing your credentials.')
+    return res.redirect("/account/login")
+  }
+
+}
+
+
+
+module.exports =  accountController
+
+
+// Week05
+//module.exports = { accountController, accountLogin}

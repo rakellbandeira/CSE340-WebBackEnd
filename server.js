@@ -1,8 +1,4 @@
-/* ******************************************
- * This server.js file is the primary file of the 
- * application. It is used to control the project.
- * This is a test text
- *******************************************/
+
 /* ***********************
  * Require Statements
  *************************/
@@ -18,6 +14,9 @@ const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+//Week05
+const cookieParser = require("cookie-parser")
+
 
 
 /* ***********************
@@ -43,6 +42,15 @@ app.use(function(req, res, next){
 // Body parse middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) 
+
+
+//Week05
+//Cookie Parser
+app.use(cookieParser())
+
+// Apply the Middleware
+app.use(utilities.checkJWTToken)
+
 
 
 
