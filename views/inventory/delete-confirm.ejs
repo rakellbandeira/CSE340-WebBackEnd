@@ -1,0 +1,54 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <p>Confirm Deletion - The deletion is permanent.</p>
+
+  <% } %>
+  
+  <%- messages() %>
+  
+  <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+  
+
+
+
+  <div class="form-container inv-form">
+    <form id="deleteForm" action="/inv/delete-confirm" method="post">
+           
+      <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+  
+      <div class="form-group">
+        <label for="inv_make">Make:</label>
+        <input type="text" for="inv_make" id="inv_make" name="inv_make" readonly
+               value="<%= locals.inv_make %>">
+      </div>
+      
+      <div class="form-group">
+        <label for="inv_model">Model:</label>
+        <input type="text" id="inv_model" name="inv_model" readonly
+               value="<%= locals.inv_model %>">
+      </div>
+      
+      <div class="form-group">
+        <label for="inv_year">Year:</label>
+        <input type="number" id="inv_year" name="inv_year" readonly
+               pattern="[0-9]{4}" value="<%= locals.inv_year %>">
+      </div>
+
+      <div class="form-group">
+        <label for="inv_price">Price:</label>
+        <input type="text" id="inv_price" name="inv_price" readonly
+               value="<%= locals.inv_price %>">
+      </div>
+      
+      <div class="form-group">
+        
+        <button type="submit">Delete</button>
+      </div>
+    </form>
+  </div>

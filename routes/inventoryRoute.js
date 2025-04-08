@@ -38,4 +38,18 @@ router.post(
 router.get("/", utilities.handleErrors(invController.buildManagement))
 
 
+//Week05 - Team Activity
+// Route to deliver the delete confirmation view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteConfirm))
+
+// Route to process the deletion
+//router.post("/delete", utilities.handleErrors(invController.deleteInventoryItem))
+router.post("/delete-confirm", utilities.handleErrors(invController.deleteInventoryItem))
+
+
+// Process the classification view to the management view options
+router.post("/getInventory", utilities.handleErrors(invController.getInventoryJSON))
+
+
+
 module.exports = router;

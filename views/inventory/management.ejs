@@ -10,5 +10,50 @@
     <div class="management-links">
       <a href="/inv/add-classification" class="management-link">Add New Classification</a>
       <a href="/inv/add-inventory" class="management-link">Add New Vehicle</a>
+<!--       <a href="/inv/delete-confirm" class="management-link">Delete Item</a>
+ -->  
+    </div>
+
+    <div class="management-deletes">
+        <h2 class="management-delete">Delete Inventory</h2>
+        <p id="delete-warning">Choose a classification to see the inventory items.</p>
+        
+        <div id="management-delete-sub">
+
+          <form action="/inv/getInventory" method="post" id="classificationForm">
+            <!--           <select name="classification_id" id="classificationList" required>
+             -->            
+                          <%- classificationSelect %>
+            <!--           </select>
+             -->        </form>
+            
+                    <% if(locals.inventoryDisplay) { %>
+                      <table id="inventoryDisplay">
+                        <thead>
+                          <tr>
+                            <th>Vehicle Name</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <%- inventoryDisplay %>
+                        </tbody>
+                      </table>
+                    <% } %>
+
+        </div>
+        
+
+
     </div>
   </div>
+
+
+
+
+
+<script>
+  document.getElementById('classificationList').addEventListener('change', function() {
+  document.getElementById('classificationForm').submit();
+  });
+</script>

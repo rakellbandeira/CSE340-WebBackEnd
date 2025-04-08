@@ -24,12 +24,13 @@ validate.registrationRules = () => {
       .isLength({ min: 2 })
       .withMessage("Please provide a last name."), 
 
-    // valid email is required and cannot already exist in the database
     body("account_email")
       .trim()
       .isEmail()
-      .normalizeEmail() // refer to validator.js docs
+      .normalizeEmail() 
       .withMessage("A valid email is required.")
+      // this is to check if valid email does not
+      // already exist in the database
       .custom(async (account_email) => {
         const emailExists = await accountModel.checkExistingEmail(account_email)
         if (emailExists){
@@ -84,7 +85,6 @@ validate.loginRules = () => {
     body("account_email")
       .trim()
       .isEmail()
-      .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required."),
 
     // password is required
@@ -95,8 +95,10 @@ validate.loginRules = () => {
   ]
 }
 
+
+
 /* ******************************
- * Check data and return errors or continue to login
+ * Check login data and return errors or continue to login
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
   const { account_email } = req.body

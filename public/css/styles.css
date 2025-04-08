@@ -9,6 +9,10 @@
   --backcolor3: #f8f4f4;
   --yellow: #c0ac04;
   --green: #089c5c;
+  --gray: #545454;
+  --paragraph-size: 1.2rem;
+  --subtitle-size: 1.5rem;
+  --title-size: 2rem;
   
 }
 
@@ -525,12 +529,73 @@ ul.notice li {
 }
 
 
+.management-deletes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  background-color: var(--gray);
+
+}
+
+.management-delete {
+  display: inline-block;
+  height: fit-content;
+  background-color: white;
+  border: solid 1px red;
+  color: var(--backcolor1);
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
+#delete-warning {
+  font-size: var(--paragraph-size);
+  margin: 0px 50px;
+}
+
+
+
+#management-delete-sub{
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  /* justify-items: center;
+  justify-self: center; */
+  gap: 50px;
+  width: fit-content;
+  padding: 40px;
+}
+
+#classificationList{
+  padding:10px;
+}
+
+#inventoryDisplay th{
+  padding: 10px;
+}
+
+#inventoryDisplay td a{
+  color: var(--yellow);
+  text-decoration: none;
+  margin-left: 25px;
+}
+#inventoryDisplay td a:hover{
+  color: var(--green);
+  text-decoration: none;
+}
+
+
 /* Form container styles */
 .form-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: var(--backcolor2);
+  background-color: var(--backcolor1);
   border-radius: 10px;
   color: white;
 }
@@ -748,7 +813,7 @@ footer {
   }
 
   .section-box-title h4, p{
-    font-size: 2rem !important; 
+    font-size: 2rem ; 
   }
 
   footer{
