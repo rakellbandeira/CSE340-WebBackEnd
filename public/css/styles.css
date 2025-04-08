@@ -352,6 +352,43 @@ main{
   color: white;
 }
 
+
+.account-welcome {
+  margin-bottom: 40px;
+  font-size: 2rem;
+}
+
+.login-container p a{
+  text-decoration: none;
+  color: white;
+  font-size: var(--subtitle-size);
+  background-color: var(--backcolor1);
+  padding: 20px;
+  border-radius: 10px;
+  
+}
+
+.login-container p a:hover{
+  color: var(--yellow);
+}
+
+.login-container h3{
+  margin: 60px 0px 30px 0px;
+  font-size: 2rem;
+}
+
+
+#accountUpdate button{
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+#passwordChange button{
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+
 .form-group {
   margin-bottom: 20px;
 }

@@ -146,9 +146,7 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
-
-
-
+ 
 //Week05 - Authentication
 /* ****************************************
  *  Check Login
@@ -162,6 +160,32 @@ Util.checkLogin = (req, res, next) => {
   }
  }
 
+
+// Week 05 - Middleware to restrict access to /inv to
+// only employee and admin types
+/* ****************************************
+ *  Account Type authentication
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+  if (res.locals.loggedin) {
+    const accountType = res.locals.accountData.account_type
+
+    if(accountType === "Employee" || accountType === "Admin") {
+      next()
+    } else {
+      req.flash(
+        "notice",
+        "You do no have permission to access this page")
+      return res.redirect("/account/login")
+    }
+
+  } else {
+    req.flash(
+      "notice",
+      "Please log in")
+    return res.redirect("/account/login")
+  }
+}
 
 
 

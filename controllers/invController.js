@@ -11,6 +11,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
   const data = await invModel.getInventoryByClassificationId(classification_id)
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
+  // Took off the [0]
   const className = data[0].classification_name
   res.render("./inventory/classification", {
     title: className + " vehicles",
@@ -87,12 +88,12 @@ invCont.addClassification = async function (req, res, next) {
       "notice",
       `The ${classification_name} classification was successfully added.`
     )
-    let nav = await utilities.getNav()
-    res.status(201).render("inventory/management", {
-      title: "Vehicle Management",
-      nav,
-      errors: null,
-    })
+
+    // ERROR FOUND: After adding the classification dropdown,
+    // the previous render was not passing the necessary data
+    // So, Redirect instead of render again
+    return res.redirect("/inv/")
+
   } else {
     req.flash("notice", "Sorry, the addition failed.")
     res.status(501).render("inventory/add-classification", {
@@ -142,12 +143,12 @@ invCont.addInventory = async function (req, res, next) {
       "notice",
       `The ${inv_make} ${inv_model} was successfully added.`
     )
-    let nav = await utilities.getNav()
-    res.status(201).render("inventory/management", {
-      title: "Vehicle Management",
-      nav,
-      errors: null,
-    })
+
+    // ERROR FOUND: After adding the classification dropdown,
+    // the previous render was not passing the necessary data
+    // So, Redirect instead of render again
+    return res.redirect("/inv/")
+
   } else {
     req.flash("notice", "Sorry, the addition failed.")
     let nav = await utilities.getNav()
