@@ -21,21 +21,45 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 
+// In Week 06 - Personal Enhancement:
+// I need to include review inside the inventory pages
 /* ***************************
  *  Build the vehicle detail view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {
   try {
     const inv_id = req.params.invId
+    
     const vehicleData = await invModel.getVehicleById(inv_id)
     const vehicleHtml = await utilities.buildVehicleDetail(vehicleData)
     let nav = await utilities.getNav()
     const vehicleName = vehicleData.inv_make + " " + vehicleData.inv_model
     
+    // Getting the available reviews in database
+    const reviewModel = require("../models/review-model")
+    const reviews = await reviewModel.getReviewsByInventoryId(inv_id)
+
+    // Getting the like status for the current user
+    let hasLiked = false
+    if (res.locals.loggedin) { 
+      hasLiked = await reviewModel.checkLikeStatus(inv_id, res.locals.accountData.account_id)
+    } else {
+      hasLiked = false
+    }
+
+    // Getting the like total count
+    const likeCount = await reviewModel.countLikes(inv_id)
+
+    // Adding made necessary variables from now on to build the views
     res.render("./inventory/detail", {
       title: vehicleName,
       nav,
       vehicleHtml,
+      inv_id,
+      reviews,
+      likeCount,
+      hasLiked
+
     })
   } catch (error) {
     console.error("Error in buildByInvId:", error)

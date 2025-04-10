@@ -10,3 +10,108 @@
   <div class="vehicle-container">
     <%- vehicleHtml %>
   </div>
+
+
+<!-- Like Button i icon-->
+<div class="vehicle-likes">
+  <% if (locals.loggedin) { %>
+    <!-- storing inv_id and like status as button properties to be used in js script later -->
+    <button id="likeButton" class="like-btn" data-inv-id="<%= inv_id %>" data-liked="<%= hasLiked %>">
+      <i class="<%= hasLiked ? 'fas' : 'far' %> fa-heart"></i>
+    </button>
+  <% } else { %>
+    <button class="like-btn disabled" title="Log in to like this vehicle">
+      <i class="far fa-heart"></i>
+    </button>
+  <% } %>
+  <span id="likeCount"><%= likeCount %></span> likes
+</div>
+
+<!-- Review Form -->
+<% if (locals.loggedin) { %>
+  <div class="review-form-container">
+    <h2>Leave a Review</h2>
+
+    <form action="/review/add" method="POST" id="reviewForm">
+      <label for="review_text">Your Review:</label>
+      <textarea id="review_text" name="review_text" rows="4" required></textarea>
+      <input type="hidden" name="inv_id" value="<%= inv_id %>">
+      <button type="submit">Submit Review</button>
+    </form>
+    
+  </div>
+<% } else { %>
+  <p class="login-prompt"><a href="/account/login">Log in</a> to leave a review.</p>
+<% } %>
+
+<!-- Reviews List -->
+<div class="reviews-container">
+  <h2>Reviews</h2>
+  <% if (reviews && reviews.length > 0) { %>
+    <div class="reviews-list">
+      <% reviews.forEach(review => { %>
+        <div class="review-item">
+          <div class="review-header">
+            <span class="review-author"><%= review.account_firstname %> <%= review.account_lastname %></span>
+            <span class="review-date">
+              <%= new Date(review.review_date).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+              }) %>
+            </span>
+          </div>
+          <div class="review-text">
+            <%= review.review_text %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p>No reviews yet. Be the first to review this vehicle!</p>
+  <% } %>
+</div>
+
+
+
+<!-- JavaScript for Like Button and reviews comment div -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const likeButton = document.getElementById('likeButton');
+    if (likeButton) {
+      likeButton.addEventListener('click', function() {
+        const invId = this.getAttribute('data-inv-id');
+        const isLiked = this.getAttribute('data-liked') === 'true';
+        
+        // Send AJAX request to toggle like button on/off
+        // path from Controller returns a JSON object
+        fetch(`/review/like/${invId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          const likeCount = document.getElementById('likeCount');
+          const heartIcon = likeButton.querySelector('i');
+          
+          if (data.action === 'liked') {
+            likeButton.setAttribute('data-liked', 'true');
+            heartIcon.classList.remove('far');
+            heartIcon.classList.add('fas');
+            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+          } else if (data.action === 'unliked') {
+            likeButton.setAttribute('data-liked', 'false');
+            heartIcon.classList.remove('fas');
+            heartIcon.classList.add('far');
+            likeCount.textContent = parseInt(likeCount.textContent) - 1;
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+    }
+  });
+</script>

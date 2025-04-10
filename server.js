@@ -16,6 +16,8 @@ const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 //Week05
 const cookieParser = require("cookie-parser")
+//Week 06
+const reviewRoute = require("./routes/reviewRoute")
 
 
 
@@ -50,6 +52,11 @@ app.use(cookieParser())
 
 // Apply the Middleware
 app.use(utilities.checkJWTToken)
+
+
+// Week 06 
+// Route for review handling
+app.use("/review", reviewRoute)
 
 
 

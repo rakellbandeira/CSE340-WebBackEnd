@@ -59,7 +59,7 @@ Util.buildClassificationGrid = async function(data){
     return grid
   }
 
-
+  // Week 06 - Including the like button
     /***************************************
     * Build the vehicle detail view HTML
     ************************************* */
@@ -78,6 +78,8 @@ Util.buildClassificationGrid = async function(data){
       html += '</div>'
       html += `<p class="vehicle-description">${vehicle.inv_description}</p>`
       html += '</div>'
+      /* html += '<div>'
+      html += '</div>' */
       html += '</div>'
       return html
   }
