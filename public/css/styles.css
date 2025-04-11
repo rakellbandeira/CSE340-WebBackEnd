@@ -4,6 +4,7 @@
 :root{
   --font-title: "Urbanist", sans-serif;
   --font2: "Candal", sans-serif;
+  --font3: "Awesome", sans-serif;
   --backcolor1: #181414;
   --backcolor2: #282424;
   --backcolor3: #f8f4f4;
@@ -49,6 +50,10 @@ header {
   text-decoration: none;
 }
 
+#tools a:hover{
+  color: var(--yellow);
+}
+
 nav {
   height: 100px;
   align-content: center;
@@ -84,7 +89,7 @@ nav ul a:hover{
 main{
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  /* gap: 70px; */
 }
 
 /* Hero Section Mobile*/
@@ -294,9 +299,18 @@ main{
 
 
 /* Vehicle Detail Styles */
+
+.vehicle-container{
+  background-color: var(--backcolor2);
+  padding: 20px 50px;
+  border-radius: 10px;
+  margin: 20px 0;
+  
+}
+
 .vehicle-detail {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   background-color: var(--backcolor2);
   padding: 20px;
@@ -304,30 +318,44 @@ main{
   margin: 20px 0;
 }
 
+.vehicle-text {
+  grid-column: 1/3;
+  color: white;
+}
+
+.vehicle-image{
+  grid-column: 1/2;
+}
+
 .vehicle-image img {
-  width: 100%;
+  
   height: auto;
   border-radius: 8px;
 }
 
 .vehicle-info {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
   color: white;
 }
 
 .vehicle-info h2 {
+  grid-column: 1/3;
+  display: flex;
+  justify-content: center;
   font-size: 2rem;
   margin: 0;
   color: var(--yellow);
 }
 
 .vehicle-specs {
+  grid-column: 1/3;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-bottom: 15px;
+  font-size: 1.5rem;
 }
 
 .vehicle-price {
@@ -347,6 +375,9 @@ main{
   display: flex;
   align-items: center;
   margin: 20px 0;
+  color: white;
+  font-size: 2rem;
+  gap: 10px;
 }
 
 .like-btn {
@@ -368,16 +399,29 @@ main{
   transform: scale(1.1);
 }
 
+.fa-heart::before {
+  font-family: "Font Awesome 5 Free";
+}
+
 .fa-heart {
   transition: all 0.3s ease;
+  font-family: "Font Awesome 5 Free";
+
+  
 }
 
 .fas.fa-heart {
   color: #e31b23;
+  font-family: "Font Awesome 5 Free";
+
+
 }
 
 .far.fa-heart {
   color: #e31b23;
+  font-family: "Font Awesome 5 Free";
+
+
 }
 
 #likeCount {
@@ -392,6 +436,7 @@ main{
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 5px;
+  font-size: 1.4rem;
 }
 
 .review-form-container h2 {
@@ -401,6 +446,10 @@ main{
 #reviewForm {
   display: flex;
   flex-direction: column;
+}
+
+#reviewForm button{
+  font-size: 1.4rem;
 }
 
 #reviewForm label {
@@ -440,6 +489,7 @@ main{
 /* Reviews List Styles */
 .reviews-container {
   margin: 30px 0;
+  padding: 0px 70px;
 }
 
 .reviews-list {
@@ -845,7 +895,7 @@ ul.notice li {
 /* Footer section */
 footer {
   width: 100%;
-  min-height: 350px;
+  min-height: 250px;
   background-color: var(--backcolor1);
   color: white;
   border-top-left-radius: 70px;
@@ -853,13 +903,26 @@ footer {
 
   display: flex;
   justify-content: center;
-
+  flex-direction: column;
+  gap: 30px;
+  text-decoration: none;
   font-size: 2.5rem;
   padding: 70px;
   margin-top: 70px;
 }
 
+footer a{
+  text-decoration: none;
+  color: white;
+}
 
+footer a:hover{
+  color: var(--yellow);
+}
+
+footer a::after{
+  color: white;
+}
 
 
 
@@ -888,12 +951,15 @@ footer {
 
    #hero-box button {
     font-size: 2rem;
+    cursor: pointer;
   }
 
    #hero-img{
     grid-row: 2/3;
     grid-column: 1/3;
-    margin-top: 280px;
+    margin-top: 100px;
+    position: relative;
+    right: -200px;
   }
 
   #inv-display {
@@ -973,6 +1039,7 @@ footer {
     width: 100%;
     height: fit-content;
     font-size: 2rem;
+    margin-left: 50px;
   }
 
   #upgrades {

@@ -76,10 +76,11 @@ Util.buildClassificationGrid = async function(data){
       html += `<p class="vehicle-miles">Mileage: ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</p>`
       html += `<p class="vehicle-color">Color: ${vehicle.inv_color}</p>`
       html += '</div>'
+      html += '</div>'
+      html += '<div class="vehicle-text">'
       html += `<p class="vehicle-description">${vehicle.inv_description}</p>`
       html += '</div>'
-      /* html += '<div>'
-      html += '</div>' */
+      
       html += '</div>'
       return html
   }

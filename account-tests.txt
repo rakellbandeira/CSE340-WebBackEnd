@@ -1,16 +1,10 @@
 Register three new accounts with the following information using your registration form:
-account_firstname: Basic
-account_lastname: Client
+Basic Client
 account_email: basic@340.edu
-account_password: I@mABas1cCli3nt
-
-account_firstname: Happy
-account_lastname: Employee
+account_password: I@mABas1cCl!3nt
+Employee
 account_email: happy@340.edu
 account_password: I@mAnEmpl0y33
-
-account_firstname: Manager
-account_lastname: User
-account_email: manager3@340.edu
+Manager
+account_email: manager@340.edu
 account_password: I@mAnAdm!n1strat0r
-

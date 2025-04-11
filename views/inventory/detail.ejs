@@ -9,10 +9,7 @@
   <!-- Vehicle Detail Content -->
   <div class="vehicle-container">
     <%- vehicleHtml %>
-  </div>
-
-
-<!-- Like Button i icon-->
+    <!-- Like Button i icon-->
 <div class="vehicle-likes">
   <% if (locals.loggedin) { %>
     <!-- storing inv_id and like status as button properties to be used in js script later -->
@@ -43,6 +40,10 @@
 <% } else { %>
   <p class="login-prompt"><a href="/account/login">Log in</a> to leave a review.</p>
 <% } %>
+  </div>
+
+
+
 
 <!-- Reviews List -->
 <div class="reviews-container">
