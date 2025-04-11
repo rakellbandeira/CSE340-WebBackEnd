@@ -57,6 +57,7 @@ app.use(utilities.checkJWTToken)
 // Week 06 
 // Route for review handling
 app.use("/review", reviewRoute)
+app.use(express.static('public'));
 
 
 
